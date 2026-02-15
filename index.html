@@ -1,314 +1,46 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Debt Payoff Tracker</title>
-  <meta name="description" content="Free debt snowball & avalanche payoff tracker. Estimate your debt-free date, total interest, and payoff plan in minutes." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css" />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Debt Payoff Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar__inner">
-      <a class="brand" href="#top" aria-label="Debt Payoff Tracker home">
-        <span class="brand__mark" aria-hidden="true">💗</span>
-        <span class="brand__name">Debt Payoff Tracker</span>
-      </a>
 
-      <nav class="topbar__nav">
-        <a class="navlink" href="#tools">Tool</a>
-        <a class="navlink" href="#how">How it works</a>
-        <a class="navlink" href="#faq">FAQ</a>
-      </nav>
+<div class="container">
 
-      <div class="topbar__actions">
-        <button class="btn btn--ghost" id="themeToggle" type="button" aria-label="Toggle theme">
-          <span class="icon" aria-hidden="true">🎨</span>
-          Theme
-        </button>
-        <button class="btn btn--primary" id="upgradeBtn" type="button">
-          Upgrade to Pro
-        </button>
-      </div>
-    </div>
-  </header>
+<section id="quizIntro" class="card center">
+<h1>Let’s Understand Your Situation</h1>
+<p>This quick quiz helps us build the right debt plan for you. No finance knowledge needed.</p>
+<button class="btn primary" id="startQuiz">Start</button>
+</section>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero__inner">
-        <div class="hero__copy">
-          <div class="badge">
-            <span class="badge__dot" aria-hidden="true"></span>
-            Free • Snowball & Avalanche • No login
-          </div>
+<section id="quizSection" class="card" hidden>
+<div class="progress">
+<div id="progressBar"></div>
+</div>
+<div id="questionContainer"></div>
+</section>
 
-          <h1>Become debt‑free faster — with a plan you’ll actually stick to.</h1>
-          <p class="hero__sub">
-            Add your debts, pick Snowball or Avalanche, and instantly see your debt‑free date, total interest,
-            and a clean payoff roadmap. Free to use — upgrade later for premium exports & multi‑plans.
-          </p>
+<section id="resultSection" class="card center" hidden>
+<h2 id="resultTitle"></h2>
+<p id="resultText"></p>
+<button class="btn primary" onclick="applyResult()">Build My Plan</button>
+</section>
 
-          <div class="hero__cta">
-            <a class="btn btn--xl btn--primary" href="#tools">Start the tracker</a>
-            <button class="btn btn--xl btn--ghost" type="button" id="resetBtn">Reset demo</button>
-          </div>
+<section id="tracker" class="card" hidden>
+<h2>Your Plan</h2>
+<label>Recommended Method</label>
+<select id="methodSelect">
+<option value="snowball">Snowball</option>
+<option value="avalanche">Avalanche</option>
+</select>
+</section>
 
-          <div class="hero__meta">
-            <div class="metaCard">
-              <div class="metaCard__kicker">Instant timeline</div>
-              <div class="metaCard__value">Debt‑free date</div>
-            </div>
-            <div class="metaCard">
-              <div class="metaCard__kicker">Method options</div>
-              <div class="metaCard__value">Snowball / Avalanche</div>
-            </div>
-            <div class="metaCard">
-              <div class="metaCard__kicker">Private</div>
-              <div class="metaCard__value">Saved in your browser</div>
-            </div>
-          </div>
-        </div>
+</div>
 
-        <div class="hero__preview" aria-hidden="true">
-          <div class="previewCard">
-            <div class="previewCard__top">
-              <div class="previewCard__title">Dashboard preview</div>
-              <div class="pill">Free</div>
-            </div>
-            <div class="previewGrid">
-              <div class="miniStat">
-                <div class="miniStat__k">Debt‑free</div>
-                <div class="miniStat__v">Oct 2028</div>
-              </div>
-              <div class="miniStat">
-                <div class="miniStat__k">Interest</div>
-                <div class="miniStat__v">$6,240</div>
-              </div>
-              <div class="miniStat">
-                <div class="miniStat__k">Total debt</div>
-                <div class="miniStat__v">$45,300</div>
-              </div>
-              <div class="miniStat">
-                <div class="miniStat__k">Extra</div>
-                <div class="miniStat__v">$200/mo</div>
-              </div>
-            </div>
-
-            <div class="previewBars">
-              <div class="barRow">
-                <div class="barRow__name">Credit Card</div>
-                <div class="barRow__bar"><span style="width:36%"></span></div>
-              </div>
-              <div class="barRow">
-                <div class="barRow__name">Car Loan</div>
-                <div class="barRow__bar"><span style="width:68%"></span></div>
-              </div>
-              <div class="barRow">
-                <div class="barRow__name">Student Loan</div>
-                <div class="barRow__bar"><span style="width:92%"></span></div>
-              </div>
-            </div>
-          </div>
-          <div class="glow" aria-hidden="true"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="tools">
-      <div class="container">
-        <div class="section__head">
-          <h2>Debt payoff tracker</h2>
-          <p class="muted">Free core features. Pro coming soon: exports, comparisons, multiple plans, and prettier visuals.</p>
-        </div>
-
-        <div class="toolShell" id="toolShell">
-          <div class="toolShell__top">
-            <div class="toolTabs" role="tablist" aria-label="Tracker tabs">
-              <button class="tab is-active" data-tab="dashboard" type="button" role="tab" aria-selected="true">Dashboard</button>
-              <button class="tab" data-tab="setup" type="button" role="tab" aria-selected="false">Setup</button>
-            </div>
-
-            <div class="toolActions">
-              <button class="btn btn--ghost" id="colorModeBtn" type="button" aria-label="Color mode">
-                <span class="icon" aria-hidden="true">💗</span>
-                Pink
-              </button>
-            </div>
-          </div>
-
-          <!-- DASHBOARD -->
-          <div class="panel" data-panel="dashboard">
-            <div class="cards">
-              <div class="card">
-                <div class="kicker">Debt‑Free Date</div>
-                <div class="big" data-out="debtFreeDate">—</div>
-                <div class="mini"><span data-out="months">0</span> months</div>
-              </div>
-              <div class="card">
-                <div class="kicker">Total Interest</div>
-                <div class="big" data-out="totalInterest">$0</div>
-              </div>
-              <div class="card">
-                <div class="kicker">Total Debt</div>
-                <div class="big" data-out="totalDebt">$0</div>
-                <div class="mini"><span data-out="debtCount">0</span> debts</div>
-              </div>
-              <div class="card">
-                <div class="kicker">Extra Payment</div>
-                <div class="big" data-out="extra">$0</div>
-                <div class="mini">per month</div>
-              </div>
-            </div>
-
-            <div class="box">
-              <div class="box__head">
-                <h3>Individual debt progress</h3>
-                <div class="pill pill--soft" id="methodPill">Snowball</div>
-              </div>
-              <div class="progressList" data-out="progressList"></div>
-            </div>
-
-            <div class="celebrate" role="status" aria-live="polite">
-              🎉 You’ll be debt‑free in <b data-out="monthsInline">0</b> months paying <b data-out="totalInterestInline">$0</b> in interest.
-            </div>
-          </div>
-
-          <!-- SETUP -->
-          <div class="panel" data-panel="setup" hidden>
-            <div class="box">
-              <div class="box__head">
-                <h3>Settings</h3>
-                <div class="pill pill--soft">Free</div>
-              </div>
-
-              <div class="formGrid">
-                <div class="field">
-                  <label for="methodSel">Payoff method</label>
-                  <select id="methodSel">
-                    <option value="snowball">Snowball (smallest first)</option>
-                    <option value="avalanche">Avalanche (highest rate)</option>
-                  </select>
-                </div>
-
-                <div class="field">
-                  <label for="extraInp">Extra monthly payment</label>
-                  <input id="extraInp" type="number" min="0" step="1" placeholder="200" />
-                </div>
-              </div>
-            </div>
-
-            <div class="box">
-              <div class="box__head">
-                <h3>Your debts</h3>
-                <button class="btn btn--primary" id="addDebtBtn" type="button">+ Add debt</button>
-              </div>
-
-              <div class="tableHead">
-                <div>Name</div><div>Balance</div><div>Min payment</div><div>APR %</div><div></div>
-              </div>
-
-              <div class="debts" id="debtsHost"></div>
-
-              <div class="note muted">
-                Tip: Enter balances, minimum payments, and APR. Your data stays on your device (browser storage).
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="how">
-      <div class="container">
-        <div class="section__head">
-          <h2>How it works</h2>
-          <p class="muted">Two popular payoff strategies — pick one that matches your personality.</p>
-        </div>
-
-        <div class="grid3">
-          <div class="infoCard">
-            <div class="infoCard__icon" aria-hidden="true">❄️</div>
-            <h3>Snowball</h3>
-            <p>Pay off the smallest balance first to build momentum. When a debt is gone, roll its minimum payment into the next.</p>
-          </div>
-          <div class="infoCard">
-            <div class="infoCard__icon" aria-hidden="true">🏔️</div>
-            <h3>Avalanche</h3>
-            <p>Pay off the highest interest rate first to minimize total interest. Usually the cheapest mathematically.</p>
-          </div>
-          <div class="infoCard">
-            <div class="infoCard__icon" aria-hidden="true">🔒</div>
-            <h3>Private</h3>
-            <p>No account required. Your plan is saved locally in your browser. Clear it anytime with reset.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="section__head">
-          <h2>FAQ</h2>
-        </div>
-
-        <div class="faq">
-          <details>
-            <summary>Is this really free?</summary>
-            <p>Yes — the core tracker is free. Pro will add exports (PDF/CSV), multi‑plans, and nicer visuals.</p>
-          </details>
-          <details>
-            <summary>Do you store my data?</summary>
-            <p>No. Your entries are saved in your browser (localStorage). If you switch devices or clear browser data, it resets.</p>
-          </details>
-          <details>
-            <summary>Is the math exact?</summary>
-            <p>It’s an estimate based on monthly compounding and your minimum + extra payments. Real statements can differ slightly due to daily interest and fees.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container footer__inner">
-        <div class="muted">© <span id="year"></span> Debt Payoff Tracker</div>
-        <div class="footer__links">
-          <a href="#tools">Tool</a>
-          <a href="#how">How</a>
-          <a href="#faq">FAQ</a>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <!-- Modal -->
-  <div class="modal" id="modal" hidden>
-    <div class="modal__backdrop" data-close="1"></div>
-    <div class="modal__card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal__head">
-        <div>
-          <div class="pill">Pro</div>
-          <h3 id="modalTitle">Upgrade to Pro (coming soon)</h3>
-        </div>
-        <button class="btn btn--ghost" type="button" data-close="1">Close</button>
-      </div>
-      <div class="modal__body">
-        <ul class="list">
-          <li>Export your payoff plan (PDF/CSV)</li>
-          <li>Side‑by‑side Snowball vs Avalanche comparison</li>
-          <li>Save multiple plans (family / business / personal)</li>
-          <li>Cleaner visuals + dark mode</li>
-        </ul>
-        <p class="muted">Want payments (Stripe) + Pro unlock? Add it later once traffic starts coming in.</p>
-      </div>
-      <div class="modal__foot">
-        <button class="btn btn--primary" type="button" data-close="1">Got it</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="./app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
