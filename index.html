@@ -9,27 +9,21 @@
 </head>
 <body>
 
-<div class="container">
+<header class="nav">
+<div class="container nav-inner">
+<div class="logo">Debt Payoff Tracker</div>
+<a href="quiz.html" class="btn primary">Start Your Plan</a>
+</div>
+</header>
 
-<section id="quizIntro" class="card center">
-<h1>Build Your Debt-Free Plan</h1>
-<p>Answer a few simple questions so we can personalize your payoff strategy.</p>
-<button class="btn primary" id="startQuiz">Start Quiz</button>
+<section class="hero container">
+<h1>Become debt‑free faster — with a plan you’ll actually stick to.</h1>
+<p>Take a quick quiz and we’ll personalize your payoff strategy.</p>
+<a href="quiz.html" class="btn primary large">Start the quiz</a>
 </section>
 
-<section id="quizSection" class="card" hidden>
-<div class="progress"><div id="progressBar"></div></div>
-<div id="questionContainer"></div>
-</section>
-
-<section id="resultSection" class="card center" hidden>
-<h2 id="resultTitle"></h2>
-<p id="resultText"></p>
-<div id="emailCapture"></div>
-</section>
-
-<section id="tracker" class="card" hidden>
-<h2>Your Personalized Debt Plan</h2>
+<section id="tracker" class="container card" hidden>
+<h2>Your Personalized Plan</h2>
 
 <label>Recommended Method</label>
 <select id="methodSelect">
@@ -52,11 +46,8 @@
 <button class="btn primary" onclick="addDebt()">Add</button>
 
 <ul id="debtList"></ul>
-
 </section>
 
-</div>
-
-<script src="app.js"></script>
+<script src="tracker.js"></script>
 </body>
 </html>
