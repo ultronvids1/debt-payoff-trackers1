@@ -12,31 +12,47 @@
 <div class="container">
 
 <section id="quizIntro" class="card center">
-<h1>Let’s Understand Your Situation</h1>
-<p>This quick quiz helps us build the right debt plan for you. No finance knowledge needed.</p>
-<button class="btn primary" id="startQuiz">Start</button>
+<h1>Build Your Debt-Free Plan</h1>
+<p>Answer a few simple questions so we can personalize your payoff strategy.</p>
+<button class="btn primary" id="startQuiz">Start Quiz</button>
 </section>
 
 <section id="quizSection" class="card" hidden>
-<div class="progress">
-<div id="progressBar"></div>
-</div>
+<div class="progress"><div id="progressBar"></div></div>
 <div id="questionContainer"></div>
 </section>
 
 <section id="resultSection" class="card center" hidden>
 <h2 id="resultTitle"></h2>
 <p id="resultText"></p>
-<button class="btn primary" onclick="applyResult()">Build My Plan</button>
+<div id="emailCapture"></div>
 </section>
 
 <section id="tracker" class="card" hidden>
-<h2>Your Plan</h2>
+<h2>Your Personalized Debt Plan</h2>
+
 <label>Recommended Method</label>
 <select id="methodSelect">
 <option value="snowball">Snowball</option>
 <option value="avalanche">Avalanche</option>
 </select>
+
+<br><br>
+
+<label>Extra Monthly Payment</label>
+<input type="number" id="extraPayment" value="200"/>
+
+<br><br>
+
+<h3>Add a Debt</h3>
+<input type="text" id="debtName" placeholder="Debt name"/>
+<input type="number" id="debtBalance" placeholder="Balance"/>
+<input type="number" id="debtMin" placeholder="Minimum payment"/>
+<input type="number" id="debtRate" placeholder="Interest rate (%)"/>
+<button class="btn primary" onclick="addDebt()">Add</button>
+
+<ul id="debtList"></ul>
+
 </section>
 
 </div>
