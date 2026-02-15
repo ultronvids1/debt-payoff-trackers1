@@ -10,44 +10,58 @@
 <body>
 
 <header class="nav">
-<div class="container nav-inner">
-<div class="logo">Debt Payoff Tracker</div>
-<a href="quiz.html" class="btn primary">Start Your Plan</a>
-</div>
+  <div class="nav-inner">
+    <div class="logo">💗 Debt Payoff Tracker</div>
+    <a href="quiz.html" class="btn primary">Start the tracker</a>
+  </div>
 </header>
 
-<section class="hero container">
-<h1>Become debt‑free faster — with a plan you’ll actually stick to.</h1>
-<p>Take a quick quiz and we’ll personalize your payoff strategy.</p>
-<a href="quiz.html" class="btn primary large">Start the quiz</a>
+<section class="hero">
+  <div class="hero-text">
+    <h1>Become debt‑free faster — with a plan you'll actually stick to.</h1>
+    <p>Add your debts, pick Snowball or Avalanche, and instantly see your debt‑free date.</p>
+    <a href="quiz.html" class="btn primary">Start the tracker</a>
+  </div>
 </section>
 
-<section id="tracker" class="container card" hidden>
-<h2>Your Personalized Plan</h2>
+<section id="tracker" class="tracker" hidden>
+  <h2>Your Personalized Plan</h2>
 
-<label>Recommended Method</label>
-<select id="methodSelect">
-<option value="snowball">Snowball</option>
-<option value="avalanche">Avalanche</option>
-</select>
+  <label>Method</label>
+  <select id="methodSelect">
+    <option value="snowball">Snowball</option>
+    <option value="avalanche">Avalanche</option>
+  </select>
 
-<br><br>
+  <br><br>
 
-<label>Extra Monthly Payment</label>
-<input type="number" id="extraPayment" value="200"/>
+  <label>Extra Monthly Payment</label>
+  <input type="number" id="extraPayment" value="200"/>
 
-<br><br>
-
-<h3>Add a Debt</h3>
-<input type="text" id="debtName" placeholder="Debt name"/>
-<input type="number" id="debtBalance" placeholder="Balance"/>
-<input type="number" id="debtMin" placeholder="Minimum payment"/>
-<input type="number" id="debtRate" placeholder="Interest rate (%)"/>
-<button class="btn primary" onclick="addDebt()">Add</button>
-
-<ul id="debtList"></ul>
 </section>
 
-<script src="tracker.js"></script>
+<script>
+window.addEventListener("DOMContentLoaded", function(){
+
+  const quizDone = localStorage.getItem("quizCompleted");
+  const method = localStorage.getItem("recommendedMethod");
+
+  if(quizDone === "true" && method){
+
+    document.getElementById("tracker").hidden = false;
+
+    const select = document.getElementById("methodSelect");
+    if(select){
+      select.value = method;
+    }
+
+    document.getElementById("tracker").scrollIntoView({behavior:"smooth"});
+
+    localStorage.removeItem("quizCompleted");
+  }
+
+});
+</script>
+
 </body>
 </html>

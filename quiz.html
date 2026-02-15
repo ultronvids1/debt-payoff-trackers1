@@ -9,27 +9,8 @@
 </head>
 <body>
 
-<div class="container">
-
-<section id="quizIntro" class="card center">
-<h1>Let’s Build Your Debt Plan</h1>
-<p>Answer a few simple questions.</p>
-<button class="btn primary" id="startQuiz">Start</button>
-</section>
-
-<section id="quizSection" class="card" hidden>
-<div class="progress"><div id="progressBar"></div></div>
-<div id="questionContainer"></div>
-</section>
-
-<section id="resultSection" class="card center" hidden>
-<h2 id="resultTitle"></h2>
-<p>Enter your email to unlock your personalized plan.</p>
-<input type="email" id="userEmail" placeholder="Enter your email">
-<br><br>
-<button class="btn primary" onclick="unlockTracker()">Unlock My Plan</button>
-</section>
-
+<div class="quiz-container">
+  <div class="card" id="quizCard"></div>
 </div>
 
 <script src="quiz.js"></script>
